@@ -43,7 +43,7 @@ const VehicleEmissionCalculator = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-200">
+    <div className="flex justify-center items-center min-h-screen bg-gray-200 m-5">
       <div className="bg-white p-6 rounded-lg shadow-md border border-gray-300">
         <h1 className="text-2xl font-semibold mb-4">Vehicle Emission Calculator</h1>
         <form onSubmit={handleSubmit}>

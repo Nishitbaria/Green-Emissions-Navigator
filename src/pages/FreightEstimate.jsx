@@ -1,6 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FaCalculator, FaThumbsUp } from 'react-icons/fa';
+import { FaCalculator, FaThumbsUp, FaExclamationCircle } from 'react-icons/fa';
+
+const ResultCard = ({ result }) => (
+  <div className="border p-4 rounded-md bg-gray-100 mb-4 flex flex-col gap-6">
+    <h2 className=" font-semibold mb-2 text-center text-3xl">
+     
+      Result
+    </h2>
+    <div className="flex flex-row gap-5 items-center mb-2  border-black bottom-2"> 
+    <div className="border-2 border-gray-200 relative flex justify-center items-center gap-8 w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <FaCalculator className="text-blue-500 mr-2" />
+      <p>CO2e Grams: {result.co2e_gm}</p>
+    </div>
+    <div className="relative flex justify-center items-center gap-8 w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <FaCalculator className="text-blue-500 mr-2" />
+      <p>CO2e Kilograms: {result.co2e_kg}</p>
+    </div>
+    <div className="relative flex justify-center items-center gap-8 w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <FaCalculator className="text-blue-500 mr-2" />
+      <p>CO2e Metric Tons: {result.co2e_mt}</p>
+    </div>
+    <div className="relative flex justify-center items-center gap-8 w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+      <FaCalculator className="text-blue-500 mr-2" />
+      <p>CO2e Pounds: {result.co2e_lb}</p>
+    </div>
+    </div>
+  </div>
+);
+
+const ErrorCard = ({ error }) => (
+  <div className="border p-4 rounded-md bg-red-100 mb-4">
+    <h2 className="text-lg font-semibold mb-2 text-red-500">
+      <FaExclamationCircle className="text-red-500 mr-2" />
+      Error
+    </h2>
+    <p>{error.message}</p>
+  </div>
+);
 
 const FreightEstimate = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +82,7 @@ const FreightEstimate = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="border p-4 rounded-md bg-white shadow-md">
+      <div className="border mx-auto flex flex-col w-11/12 max-w-maxContent p-4 rounded-md bg-white shadow-md">
         <h1 className="text-2xl font-bold mb-4">Freight Estimate</h1>
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="mb-4">
@@ -54,6 +91,7 @@ const FreightEstimate = () => {
               type="text"
               name="transport_mode"
               value={formData.transport_mode}
+              placeholder='Enter "road" or "air" or "sea"'
               onChange={handleChange}
               required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
@@ -66,6 +104,7 @@ const FreightEstimate = () => {
               type="number"
               name="freight_weight"
               value={formData.freight_weight}
+              placeholder='Enter freight weight in KG'
               onChange={handleChange}
               required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
@@ -78,6 +117,7 @@ const FreightEstimate = () => {
               type="text"
               name="distance_value"
               value={formData.distance_value}
+              placeholder='Enter distance value in KM'
               onChange={handleChange}
               required
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
@@ -91,36 +131,8 @@ const FreightEstimate = () => {
             Calculate
           </button>
         </form>
-        {error && (
-          <div className="border p-4 rounded-md bg-red-100 mb-4">
-            <h2 className="text-lg font-semibold mb-2 text-red-500">Error</h2>
-            <p>{error.message}</p>
-          </div>
-        )}
- {result && (
-          <div className="border p-4 rounded-md bg-gray-100 mb-4">
-            <h2 className="text-lg font-semibold mb-2">
-              <FaCalculator className="text-blue-500 mr-2" />
-              Result
-            </h2>
-            <div className="flex items-center mb-2">
-              <FaCalculator className="text-blue-500 mr-2" />
-              <p>CO2e Grams: {result.co2e_gm}</p>
-            </div>
-            <div className="flex items-center mb-2">
-              <FaCalculator className="text-blue-500 mr-2" />
-              <p>CO2e Kilograms: {result.co2e_kg}</p>
-            </div>
-            <div className="flex items-center mb-2">
-              <FaCalculator className="text-blue-500 mr-2" />
-              <p>CO2e Metric Tons: {result.co2e_mt}</p>
-            </div>
-            <div className="flex items-center">
-              <FaCalculator className="text-blue-500 mr-2" />
-              <p>CO2e Pounds: {result.co2e_lb}</p>
-            </div>
-          </div>
-        )}
+        {error && <ErrorCard error={error} />}
+        {result && <ResultCard result={result} />}
         {result && (
           <div className="border p-4 rounded-md bg-green-100">
             <h2 className="text-lg font-semibold mb-2">
