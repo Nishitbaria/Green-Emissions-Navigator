@@ -26,6 +26,14 @@ const Cards = () => {
       link: "/Fuel",
     },
     {
+      icon: "https://cdn-icons-png.flaticon.com/512/4662/4662012.png",
+      title: "Vehicles Estimate by Model",
+      description:
+        "We calculate the footprint of a passenger vehicle based on its make and model, for a specific distance. For Scope 1, this should be used to report travel in vehicles that are owned or controlled by the reporting organization. If not owned/controlled by organization, the vehicle's emission is reported under Scope 3.",
+      link: "/VehicleEmissionCalculator",
+    },
+
+    {
       icon: "https://cdn-icons-png.flaticon.com/512/9183/9183489.png",
       title: "Freight Shipping Estimate",
       description: `The freight/shipping emission estimations are for Road, Rail, Air and Sea (categorized into Short Sea and Deep Sea). Recommended average emission factors and guidelines have been used as proposed by member companies of ECTA (European Chemical Transport Association) and Cefic which are aligned with CN's recommendations. .​`,
