@@ -76,7 +76,8 @@ const HeroSection = () => {
           >
             <img
               src={imageUrls[index]}
-              className="block w-full"
+              className="block w-full h-[500px]"
+              
               alt={`Slide ${index + 1}`}
             />
             <div className="absolute inset-0 flex flex-col gap-3 justify-center items-center text-center text-white">
