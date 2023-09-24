@@ -3,6 +3,21 @@ import React, { useState } from 'react';
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const textLabels = [
+    {
+      label: 'Slide 1 Label',
+      content: 'Some representative placeholder content for Slide 1.',
+    },
+    {
+      label: 'Slide 2 Label',
+      content: 'Some representative placeholder content for Slide 2.',
+    },
+    {
+      label: 'Slide 3 Label',
+      content: 'Some representative placeholder content for Slide 3.',
+    },
+  ];
+
   const handlePrevSlide = () => {
     setActiveSlide((prevSlide) => (prevSlide === 0 ? 2 : prevSlide - 1));
   };
@@ -55,8 +70,8 @@ const HeroSection = () => {
               alt={`Slide ${index + 1}`}
             />
             <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
-              <h5 className="text-xl">Slide  label</h5>
-              <p>Some representative placeholder content for Slide .</p>
+              <h5 className="text-xl">{textLabels[index].label}</h5>
+              <p>{textLabels[index].content}</p>
             </div>
           </div>
         ))}
