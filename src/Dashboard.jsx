@@ -21,6 +21,8 @@ const Dashboard = () => {
           const User=user;
           // ...cobs
           console.log(user)
+          const userJSON = JSON.stringify(user);
+          localStorage.setItem('MYuser', userJSON);
           SetUser(user);
           Setok(user);
           console.log("uid", uid)
