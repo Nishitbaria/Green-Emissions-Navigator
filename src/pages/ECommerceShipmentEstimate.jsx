@@ -42,7 +42,15 @@ const ECommerceShipmentEstimate = () => {
         }
       );
       setResult(response.data.data);
-    } catch (error) {
+//       console.log(localStorage.getItem('MYuser'));
+//       const danwer=localStorage.getItem('MYuser')
+//      const answer= await axios.post(
+//         'http://localhost:5000/saveResult', // Update with your server URL
+//         { resultData: response.data.data,id:danwer.uid }, // Send the result data to be saved
+      
+//       );
+// console.log(answer);
+        } catch (error) {
       setError(error);
     }
   };
