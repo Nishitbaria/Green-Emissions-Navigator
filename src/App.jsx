@@ -10,7 +10,7 @@ import ECommerceShipmentEstimate from './pages/ECommerceShipmentEstimate.jsx';
 
 export default function App() {
   return (
-    <div>
+    <div className="w-screen min-h-screen bg-white flex flex-col font-Serif">
     <Navbar />
    <Routes>
    
