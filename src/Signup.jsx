@@ -41,7 +41,7 @@ const provider = new GoogleAuthProvider();
   return (
     <main className="bg-gray-100 min-h-screen flex justify-center items-center">
       <section className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-semibold text-center mb-4">TransportHub</h1>
+        <h1 className="text-2xl font-semibold text-center mb-4">Green Emissions Navigator</h1>
         <form>
           <div className="mb-4">
             <label htmlFor="email-address" className="block text-gray-600">

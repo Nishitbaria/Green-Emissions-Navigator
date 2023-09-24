@@ -41,9 +41,9 @@ useEffect(()=>{
 
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="https://Transporthub.com/" class="flex items-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/995/995260.png" class="h-8 mr-3" alt="Transporthub Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Transporthub</span>
+      <a href="https://Green Emissions Navigator.com/" class="flex items-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/995/995260.png" class="h-8 mr-3" alt="Green Emissions Navigator Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Green Emissions Navigator</span>
       </a>
       <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
