@@ -6,6 +6,7 @@ const Dashboard = () => {
   const auth = getAuth();
   const [ok, Setok] = useState(false);
   const [User, SetUser] = useState(null);
+  const [reportData, setReportData] = useState(null);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -21,6 +22,24 @@ const Dashboard = () => {
       }
     });
   }, []);
+  useEffect(() => {
+    // Replace 'yourResultID' with the actual result ID you want to fetch
+    const resultID = localStorage.getItem("MYuser");
+
+    fetch(`http://localhost:5000/getResult/${resultID}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setReportData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching result:", error);
+      });
+  }, [])
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -41,21 +60,21 @@ const Dashboard = () => {
             </h2>
             <li className="bg-gray-100 p-4 rounded-md shadow-md">
     <h2 className="text-lg font-semibold">Report Data</h2>
-    <ul className="mt-2 space-y-1">
-      <li>
-        <strong>CO2e Grams:</strong> 322
-      </li>
-      <li>
-        <strong>CO2e Kilograms:</strong> 0.32
-      </li>
-      <li>
-        <strong>CO2e Metric Tons:</strong> 0
-      </li>
-      <li>
-        <strong>CO2e Pounds:</strong> 0.71
-      </li>
-    </ul>
-  </li>
+ {reportData &&   <ul className="mt-2 space-y-1">
+                <li>
+                  <strong>CO2e Grams:</strong> {reportData.co2e_gm}
+                </li>
+                <li>
+                  <strong>CO2e Kilograms:</strong> {reportData.co2e_kg}
+                </li>
+                <li>
+                  <strong>CO2e Metric Tons:</strong> {reportData.co2e_mt}
+                </li>
+                <li>
+                  <strong>CO2e Pounds:</strong> {reportData.co2e_lb}
+                </li>
+              </ul>}
+  </li> 
 
           </div>
 
