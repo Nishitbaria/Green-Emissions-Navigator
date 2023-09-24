@@ -46,21 +46,48 @@ module.exports = (app, client) => {
       }
     });
     app.post('/saveResult', async (req, res) => {
-        const { resultData ,id} = req.body;
-    console.log(req.body)
-        if (!resultData) {
-          return res.status(400).json({ error: 'Please provide a key and a value' });
-        }
+      const { resultData, id } = req.body;
+      console.log(req.body); // For debugging purposes
     
-        try {
-          await client.connect();
-          await client.set(id, resultData);
-          res.json({ message: 'Result saved successfully' });
-        } catch (error) {
-          console.error(error);
-          res.status(500).json({ error: 'Internal Server Error' });
-        } finally {
-          client.disconnect();
+      if (!resultData || !id) {
+        return res.status(400).json({ error: 'Please provide an id and result data' });
+      }
+    
+      try {
+        await client.connect();
+        // Ensure that resultData is a JSON string
+        const resultDataString = typeof resultData === 'string' ? resultData : JSON.stringify(resultData);
+        await client.set(id, resultDataString); // Store the data
+        res.json({ message: 'Result saved successfully' });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } finally {
+        client.disconnect();
+      }
+    });
+    app.get('/getResult/:id', async (req, res) => {
+      const { id } = req.params;
+  
+      try {
+        await client.connect();
+        const resultData = await client.get(id);
+  
+        if (!resultData) {
+          return res.status(404).json({ error: 'Result not found' });
         }
-      });
+  
+        // Parse the result data if it's a JSON string
+        const parsedResultData = JSON.parse(resultData);
+  
+        res.json(parsedResultData);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } finally {
+        client.disconnect();
+      }
+    });
+    
+    
   };

@@ -24,6 +24,8 @@ useEffect(()=>{
         const User=user;
         // ...cobs
         console.log(user)
+        
+        localStorage.setItem('MYuser', user.uid);
         SetUser(user);
         Setok(user);
         console.log("uid", uid)
