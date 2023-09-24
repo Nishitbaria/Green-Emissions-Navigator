@@ -10,6 +10,9 @@ import ECommerceShipmentEstimate from './pages/ECommerceShipmentEstimate.jsx';
 import FreightEstimate from './pages/FreightEstimate.jsx';
 import FlightEstimate from './pages/FlightEstimate.jsx';
 import FuelEstimate from './pages/FuelEstimate.jsx';
+import Signup from './Signup.jsx';
+import Login from './Login.jsx';
+import Dashboard from './Dashboard.jsx';
 
 export default function App() {
   return (
@@ -22,6 +25,9 @@ export default function App() {
     <Route path="/Freight" element={<FreightEstimate />} />
     <Route path="/Flight" element={<FlightEstimate />} />
     <Route path="/Fuel" element={<FuelEstimate />} />
+    <Route path="/Signup" element={<Signup/>}/>
+    <Route path="/Login" element={<Login/>}/>
+    <Route path="/Dashboard" element={<Dashboard/>}/>
     <Route path="*" element={<Error />} />
     </Routes>
     </div>
