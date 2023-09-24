@@ -43,6 +43,15 @@ const FlightEstimate = () => {
 
       const response = await axios.request(options);
       setResult(response.data.data);
+      console.log(localStorage.getItem('MYuser'));
+      const danwer=localStorage.getItem('MYuser')
+ console.log(danwer);
+     const answer= await axios.post(
+        'http://localhost:5000/saveResult', // Update with your server URL
+        { resultData: response.data.data ,id:danwer}, // Send the result data to be saved
+      
+      );
+console.log(answer);
     } catch (error) {
       setError(error);
     }
