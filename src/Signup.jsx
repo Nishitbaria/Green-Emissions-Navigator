@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getAuth,createUserWithEmailAndPassword ,signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from './firebase';
-
+import { FaGoogle } from 'react-icons/fa';
 const Signup = () => {
   const navigate = useNavigate();
   
@@ -80,7 +80,12 @@ const provider = new GoogleAuthProvider();
           </button>
 
         </form>
-        <button onClick={signInWithGoogle}> Signin with google</button>
+        <button
+      onClick={signInWithGoogle}
+      className="flex items-center  mt-4  align-center justify-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-blue-300"
+    >
+      <FaGoogle className="mr-2" size={18} color="#fff" /> Sign in with Google
+    </button>
 
         <p className="text-center mt-4">
           Already have an account?{' '}

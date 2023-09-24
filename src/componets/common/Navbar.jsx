@@ -1,7 +1,41 @@
-import React from 'react'
+import React ,{useState,useEffect}from 'react'
 import { Link } from 'react-router-dom';
-
+import { getAuth, onAuthStateChanged,signOut } from "firebase/auth";
 export default function Navbar() {
+  const auth = getAuth();
+  const[ok,Setok]=useState(false);
+  const[User,SetUser]=useState(null);
+  const handleLogout = () => {               
+    signOut(auth).then(() => {
+    // Sign-out successful.
+        navigate("/");
+        console.log("Signed out successfully")
+    }).catch((error) => {
+    // An error happened.
+    });
+
+}
+useEffect(()=>{
+  onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        const User=user;
+        // ...cobs
+        console.log(user)
+        SetUser(user);
+        Setok(user);
+        console.log("uid", uid)
+      } else {
+        // User is signed out
+        // ...
+        Setok(false);
+        console.log("user is logged out")
+      }
+    });
+   
+}, [])
   return (
     <div>
 
@@ -34,6 +68,12 @@ export default function Navbar() {
           <li>
             <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
           </li>
+          <div>
+        		{ok &&	<button onClick={handleLogout}>
+                     <h1 className='text-white'>Logout</h1>
+                    </button>
+}
+        		</div>
         </ul>
       </div>
     </div>
