@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import img1 from "../../../assets/GettyImages-157366413-36db61c23c0f4732809972e5a7dfa49f.jpg";
+import img2 from "../../../assets/istockphoto-157313230-612x612.jpg";
+import img3 from "../../../assets/photo-1565118531796-763e5082d113.jpeg";
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const imageUrls = [
+    "https://media.istockphoto.com/id/157313230/photo/polluting-clouds-of-exhaust-fumes-rise-in-the-air-denver-colorado.jpg?s=612x612&w=0&k=20&c=DOboZTF8l0I-SjjTc8FvodLCw_Wa82cDImBB7a7hqLc=",
+    "https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    "https://images.unsplash.com/photo-1565118531796-763e5082d113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bW91bnRhaW4lMjBncmFzc3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+  ];
+
   const textLabels = [
     {
-      label: 'Slide 1 Label',
-      content: 'Some representative placeholder content for Slide 1.',
+      label: "For People and Planet",
+      content: "Join us to reduce carbon.",
     },
     {
-      label: 'Slide 2 Label',
-      content: 'Some representative placeholder content for Slide 2.',
+      label: "Track Your Carbon Emissions",
+      content: "Track Your Carbon Emissions",
     },
     {
-      label: 'Slide 3 Label',
-      content: 'Some representative placeholder content for Slide 3.',
+      label: "Track Your Carbon Emissions",
+      content:
+        "Become a part of the global effort to combat climate change. Explore our tools and resources to make a positive impact on the environment.",
     },
   ];
 
@@ -58,19 +68,21 @@ const HeroSection = () => {
           <div
             key={index}
             className={`relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none ${
-              activeSlide === index ? 'block' : 'hidden'
+              activeSlide === index ? "block" : "hidden"
             }`}
             data-te-carousel-active={activeSlide === index}
             data-te-carousel-item
-            style={{ backfaceVisibility: 'hidden' }}
+            style={{ backfaceVisibility: "hidden" }}
           >
             <img
-              src={`https://tecdn.b-cdn.net/img/Photos/Slides/img%20(${index + 15}).jpg`}
+              src={imageUrls[index]}
               className="block w-full"
               alt={`Slide ${index + 1}`}
             />
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
-              <h5 className="text-xl">{textLabels[index].label}</h5>
+            <div className="absolute inset-0 flex flex-col gap-3 justify-center items-center text-center text-white">
+              <h5 className="text-5xl text-bold font-sans">
+                {textLabels[index].label}
+              </h5>
               <p>{textLabels[index].content}</p>
             </div>
           </div>
